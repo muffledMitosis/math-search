@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 import sys
-import os
 import subprocess
 
 bangs = ['\\!mathworld',    # Wolfram Mathworld
@@ -27,6 +26,9 @@ def gotoPlaces():
     elif sys.argv[1] == "-eq":
         query = modEscapeChars(sys.argv[2])
         doTheSearch("\\!wa", "\"" + query + "\"")
+    elif sys.argv[1] == "-q":
+        query = modEscapeChars(sys.argv[2])
+        doTheSearch("\\!mathse", "\"" + query + "\"")
 
 hasGoodInputs = ((len(sys.argv)>1) and (sys.argv[1][0] != "-")) or (len(sys.argv)>2)
 
