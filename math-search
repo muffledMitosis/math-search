@@ -1,0 +1,33 @@
+#!/usr/bin/python
+
+import sys
+import os
+import subprocess
+
+bangs = ['\\!mathworld',    # Wolfram Mathworld
+         '\\!wa',           # Wolfram Alpha
+         '\\!mathse'        # Mathematics - Stack Exchange
+         ]
+
+def modEscapeChars(query):
+    query = query.replace("+", "%2B")
+    query = query.replace("<", "%3C")
+    query = query.replace(">", "%3E")
+    return query
+
+def doTheSearch(bang, query):
+    subprocess.call("ddgr --np " + bang + " " + query + " &", shell=True)
+
+def gotoPlaces():
+    if sys.argv[1][0] != "-":
+        for bang in bangs:
+            doTheSearch(bang, sys.argv[1])
+    elif sys.argv[1] == "-mw":
+        doTheSearch("\\!mathworld", sys.argv[2])
+    elif sys.argv[1] == "-eq":
+        query = modEscapeChars(sys.argv[2])
+        doTheSearch("\\!wa", "\"" + query + "\"")
+
+hasGoodInputs = ((len(sys.argv)>1) and (sys.argv[1][0] != "-")) or (len(sys.argv)>2)
+
+gotoPlaces() if hasGoodInputs else print("Invalid Inputs")
