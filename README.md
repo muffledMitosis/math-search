@@ -1,6 +1,6 @@
 # A really helpful mathematics search tool
 
-A simple script that uses ddgr in combination with bangs to help you query any time of math thing your heart can imagin
+A simple script that uses ddgr in combination with bangs to help you query any type of math thing your heart can imagine
 
 ## Usage
 
